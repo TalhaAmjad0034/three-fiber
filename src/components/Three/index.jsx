@@ -1,5 +1,6 @@
 import React from "react";
 import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
+import { angleToRadians } from "../../utils/angle";
 
 function index() {
   return (
@@ -13,7 +14,7 @@ function index() {
         <meshStandardMaterial color="red" />
       </mesh>
 
-      <mesh rotation={[90 * (Math.PI / 180), 0, 0]}>
+      <mesh rotation={[-angleToRadians(45), 0, 0]}>
         {/* Adding plane */}
         <planeGeometry args={[7, 7]} />
         <meshStandardMaterial color="green" />
