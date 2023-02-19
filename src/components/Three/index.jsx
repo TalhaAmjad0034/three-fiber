@@ -6,8 +6,12 @@ import { useFrame } from "@react-three/fiber";
 function index() {
   const orbitControlsRef = useRef();
 
-  useFrame(() => {
-    orbitControlsRef.current.update();
+  useFrame((state) => {
+    if (!!orbitControlsRef.current) {
+      const { x, y } = state.mouse; // x and y are between -1 and 1
+      // setting azimuthal angle to move 90 degrees to the left and right (- for fixing invert mode)
+      orbitControlsRef.current.setAzimuthalAngle(-x * angleToRadians(90));
+    }
   });
 
   useEffect(() => {
@@ -19,7 +23,7 @@ function index() {
   return (
     <>
       {/* Camera */}
-      <PerspectiveCamera makeDefault position={[0, 1, 5]} />
+      <PerspectiveCamera makeDefault position={[0, -2, 6]} />
       <OrbitControls ref={orbitControlsRef} />
       {/* Ball */}
       <mesh position={[0, 1, 0]}>
