@@ -39,9 +39,9 @@ function index() {
         <meshStandardMaterial color="red" />
       </mesh>
 
-      {/* Adding plane */}
-      <mesh rotation={[-angleToRadians(45), 0, 0]}>
-        <planeGeometry args={[7, 7]} />
+      {/* Adding box */}
+      <mesh rotation={[-angleToRadians(90), 0, 0]}>
+        <boxGeometry args={[7, 7, 0.5]} />
         <meshStandardMaterial color="green" />
       </mesh>
 
