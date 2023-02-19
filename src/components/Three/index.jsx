@@ -34,20 +34,19 @@ function index() {
         maxPolarAngle={angleToRadians(85)}
       />
       {/* Ball */}
-      <mesh position={[0, 1, 0]}>
+      <mesh position={[0, 0.7, 0]} castShadow>
         <sphereGeometry args={[0.5, 32, 32]} />
-        <meshStandardMaterial color="red" />
+        <meshStandardMaterial color="#fff" />
       </mesh>
 
       {/* Adding box */}
-      <mesh rotation={[-angleToRadians(90), 0, 0]}>
-        <boxGeometry args={[7, 7, 0.5]} />
-        <meshStandardMaterial color="green" />
+      <mesh rotation={[-angleToRadians(90), 0, 0]} receiveShadow>
+        <boxGeometry args={[7, 7, 0.3]} />
+        <meshPhongMaterial color="#fa9b27" />
       </mesh>
 
       {/* Light */}
-      <pointLight position={[10, 10, 10]} />
-      <ambientLight intensity={0.5} />
+      <spotLight castShadow args={["#fff", 1.5, 7, angleToRadians(45), 0.4]} position={[-3, 1, 0]} />
     </>
   );
 }
