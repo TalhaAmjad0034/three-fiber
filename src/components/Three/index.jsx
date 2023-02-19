@@ -11,6 +11,10 @@ function index() {
       const { x, y } = state.mouse; // x and y are between -1 and 1
       // setting azimuthal angle to move 90 degrees to the left and right (- for fixing invert mode)
       orbitControlsRef.current.setAzimuthalAngle(-x * angleToRadians(90));
+      // setting polar angle to move 90 degrees up and down
+      orbitControlsRef.current.setPolarAngle((y + 1) * angleToRadians(90));
+      // Update the camera
+      orbitControlsRef.current.update();
     }
   });
 
@@ -23,8 +27,12 @@ function index() {
   return (
     <>
       {/* Camera */}
-      <PerspectiveCamera makeDefault position={[0, -2, 6]} />
-      <OrbitControls ref={orbitControlsRef} />
+      <PerspectiveCamera makeDefault position={[0, -4, 8]} />
+      <OrbitControls
+        ref={orbitControlsRef}
+        minPolarAngle={angleToRadians(30)}
+        maxPolarAngle={angleToRadians(85)}
+      />
       {/* Ball */}
       <mesh position={[0, 1, 0]}>
         <sphereGeometry args={[0.5, 32, 32]} />
