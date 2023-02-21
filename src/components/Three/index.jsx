@@ -1,7 +1,12 @@
 import React, { useEffect, useRef } from "react";
-import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
+import {
+  Environment,
+  OrbitControls,
+  PerspectiveCamera,
+} from "@react-three/drei";
 import { angleToRadians } from "../../utils/angle";
 import { useFrame } from "@react-three/fiber";
+import * as THREE from "three";
 
 function index() {
   const orbitControlsRef = useRef();
@@ -34,19 +39,35 @@ function index() {
         maxPolarAngle={angleToRadians(85)}
       />
       {/* Ball */}
-      <mesh position={[0, 0.7, 0]} castShadow>
+      <mesh position={[0, 0.5, 0]} castShadow>
         <sphereGeometry args={[0.5, 32, 32]} />
-        <meshStandardMaterial color="#fff" />
+        <meshStandardMaterial
+          color="#fff"
+          // emissive is the color of the light emitted by the material
+          emissive={new THREE.Color("#ff0000").multiplyScalar(0.5)}
+        />
       </mesh>
 
       {/* Adding box */}
       <mesh rotation={[-angleToRadians(90), 0, 0]} receiveShadow>
-        <boxGeometry args={[7, 7, 0.3]} />
+        <planeGeometry args={[7, 7]} />
         <meshPhongMaterial color="#fa9b27" />
       </mesh>
 
       {/* Light */}
-      <spotLight castShadow args={["#fff", 1.5, 7, angleToRadians(45), 0.4]} position={[-3, 1, 0]} />
+      <spotLight
+        castShadow
+        args={["#fff", 1.5, 7, angleToRadians(45), 0.4]}
+        position={[-3, 1, 0]}
+      />
+
+      {/* Environment */}
+      <Environment background>
+        <mesh>
+          <sphereGeometry args={[50, 100, 100]} />
+          <meshBasicMaterial color="#cc2293" side={THREE.BackSide} />
+        </mesh>
+      </Environment>
     </>
   );
 }
