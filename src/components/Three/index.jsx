@@ -11,23 +11,25 @@ import * as THREE from "three";
 function index() {
   const orbitControlsRef = useRef();
 
-  useFrame((state) => {
-    if (!!orbitControlsRef.current) {
-      const { x, y } = state.mouse; // x and y are between -1 and 1
-      // setting azimuthal angle to move 90 degrees to the left and right (- for fixing invert mode)
-      orbitControlsRef.current.setAzimuthalAngle(-x * angleToRadians(90));
-      // setting polar angle to move 90 degrees up and down
-      orbitControlsRef.current.setPolarAngle((y + 1) * angleToRadians(90));
-      // Update the camera
-      orbitControlsRef.current.update();
-    }
-  });
+  // We can use useFrame to update the camera position
 
-  useEffect(() => {
-    if (!!orbitControlsRef.current) {
-      console.log(orbitControlsRef.current);
-    }
-  }, []);
+  // useFrame((state) => {
+  //   if (!!orbitControlsRef.current) {
+  //     const { x, y } = state.mouse; // x and y are between -1 and 1
+  //     // setting azimuthal angle to move 90 degrees to the left and right (- for fixing invert mode)
+  //     orbitControlsRef.current.setAzimuthalAngle(-x * angleToRadians(90));
+  //     // setting polar angle to move 90 degrees up and down
+  //     orbitControlsRef.current.setPolarAngle((y + 1) * angleToRadians(90));
+  //     // Update the camera
+  //     orbitControlsRef.current.update();
+  //   }
+  // });
+
+  // useEffect(() => {
+  //   if (!!orbitControlsRef.current) {
+  //     console.log(orbitControlsRef.current);
+  //   }
+  // }, []);
 
   return (
     <>
@@ -35,7 +37,7 @@ function index() {
       <PerspectiveCamera makeDefault position={[0, -4, 8]} />
       <OrbitControls
         ref={orbitControlsRef}
-        minPolarAngle={angleToRadians(30)}
+        // minPolarAngle={angleToRadians(30)}
         maxPolarAngle={angleToRadians(85)}
       />
       {/* Ball */}
@@ -51,7 +53,7 @@ function index() {
       {/* Adding box */}
       <mesh rotation={[-angleToRadians(90), 0, 0]} receiveShadow>
         <planeGeometry args={[7, 7]} />
-        <meshPhongMaterial color="#fa9b27" />
+        <meshPhongMaterial color="#1ea3d8" />
       </mesh>
 
       {/* Light */}
@@ -64,8 +66,8 @@ function index() {
       {/* Environment */}
       <Environment background>
         <mesh>
-          <sphereGeometry args={[50, 100, 100]} />
-          <meshBasicMaterial color="#cc2293" side={THREE.BackSide} />
+          <boxGeometry args={[50, 100, 100]} />
+          <meshBasicMaterial color="#2280cc" side={THREE.BackSide} />
         </mesh>
       </Environment>
     </>
