@@ -44,22 +44,24 @@ function index() {
       <mesh position={[0, 0.5, 0]} castShadow>
         <sphereGeometry args={[0.5, 32, 32]} />
         <meshStandardMaterial
-          color="#fff"
+          color="#3f4900"
+          metalness={0.7}
+          roughness={0.5}
           // emissive is the color of the light emitted by the material
-          emissive={new THREE.Color("#ff0000").multiplyScalar(0.5)}
+          // emissive={new THREE.Color("#ff0000").multiplyScalar(1)}
         />
       </mesh>
 
-      {/* Adding box */}
+      {/* Adding plane */}
       <mesh rotation={[-angleToRadians(90), 0, 0]} receiveShadow>
-        <planeGeometry args={[7, 7]} />
-        <meshPhongMaterial color="#1ea3d8" />
+        <planeGeometry args={[20, 20]} />
+        <meshPhongMaterial color="#2280cc" />
       </mesh>
 
       {/* Light */}
       <spotLight
         castShadow
-        args={["#fff", 1.5, 7, angleToRadians(45), 0.4]}
+        args={["#cc00ff", 20.5, 7, angleToRadians(75), 0.4]}
         position={[-3, 1, 0]}
       />
 
