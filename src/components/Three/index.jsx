@@ -53,7 +53,7 @@ function index() {
         />
       </mesh>
 
-      {/* Car */}
+      {/* 3rd party modal (Car) */}
       <Car />
 
       {/* Adding plane */}
@@ -65,8 +65,8 @@ function index() {
       {/* Light */}
       <spotLight
         castShadow
-        args={["#cc00ff", 20.5, 7, angleToRadians(75), 0.4]}
-        position={[-3, 1, 0]}
+        args={["#ffc3a0", 40.5, 17, angleToRadians(75), 0.4]}
+        position={[-1, 3, 0]}
       />
 
       {/* Environment */}
