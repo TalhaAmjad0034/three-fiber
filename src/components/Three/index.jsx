@@ -7,6 +7,7 @@ import {
 import { angleToRadians } from "../../utils/angle";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+import Car from "../Car/Car";
 
 function index() {
   const orbitControlsRef = useRef();
@@ -34,14 +35,14 @@ function index() {
   return (
     <>
       {/* Camera */}
-      <PerspectiveCamera makeDefault position={[0, -4, 8]} />
+      <PerspectiveCamera makeDefault position={[-5, 2, 5]} />
       <OrbitControls
         ref={orbitControlsRef}
         // minPolarAngle={angleToRadians(30)}
         maxPolarAngle={angleToRadians(85)}
       />
       {/* Ball */}
-      <mesh position={[0, 0.5, 0]} castShadow>
+      <mesh position={[-1, 0.5, 2]} castShadow>
         <sphereGeometry args={[0.5, 32, 32]} />
         <meshStandardMaterial
           color="#3f4900"
@@ -51,6 +52,9 @@ function index() {
           // emissive={new THREE.Color("#ff0000").multiplyScalar(1)}
         />
       </mesh>
+
+      {/* Car */}
+      <Car />
 
       {/* Adding plane */}
       <mesh rotation={[-angleToRadians(90), 0, 0]} receiveShadow>
