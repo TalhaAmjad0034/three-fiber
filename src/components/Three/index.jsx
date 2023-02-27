@@ -8,6 +8,7 @@ import { angleToRadians } from "../../utils/angle";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import Car from "../Car/Car";
+import Drone from "../Drone/Drone";
 
 function index() {
   const orbitControlsRef = useRef();
@@ -35,11 +36,11 @@ function index() {
   return (
     <>
       {/* Camera */}
-      <PerspectiveCamera makeDefault position={[-5, 2, 5]} />
+      <PerspectiveCamera makeDefault position={[-8, 2, 3]} />
       <OrbitControls
         ref={orbitControlsRef}
         // minPolarAngle={angleToRadians(30)}
-        maxPolarAngle={angleToRadians(85)}
+        maxPolarAngle={angleToRadians(89)}
       />
       {/* Ball */}
       <mesh position={[-1, 0.5, 2]} castShadow>
@@ -52,27 +53,25 @@ function index() {
           // emissive={new THREE.Color("#ff0000").multiplyScalar(1)}
         />
       </mesh>
-
       {/* 3rd party modal (Car) */}
       <Car />
-
+      {/* Drone */}
+      <Drone />
       {/* Adding plane */}
       <mesh rotation={[-angleToRadians(90), 0, 0]} receiveShadow>
         <planeGeometry args={[20, 20]} />
         <meshPhongMaterial color="#2280cc" />
       </mesh>
-
       {/* Light */}
       <spotLight
         castShadow
         args={["#ffc3a0", 40.5, 17, angleToRadians(75), 0.4]}
         position={[-1, 3, 0]}
       />
-
       {/* Environment */}
       <Environment background>
         <mesh>
-          <boxGeometry args={[50, 100, 100]} />
+          <boxGeometry args={[250, 200, 200]} />
           <meshBasicMaterial color="#2280cc" side={THREE.BackSide} />
         </mesh>
       </Environment>
