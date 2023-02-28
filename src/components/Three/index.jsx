@@ -13,6 +13,17 @@ import Drone from "../Drone/Drone";
 function index() {
   const orbitControlsRef = useRef();
 
+  useFrame(() => {
+    if (!!orbitControlsRef.current) {
+      // Setting auto rotate to true
+      orbitControlsRef.current.autoRotate = true;
+      // Setting auto rotate speed
+      orbitControlsRef.current.autoRotateSpeed = 0.5;
+      // Update the camera
+      orbitControlsRef.current.update();
+    }
+  });
+
   // We can use useFrame to update the camera position
 
   // useFrame((state) => {
@@ -42,20 +53,7 @@ function index() {
         // minPolarAngle={angleToRadians(30)}
         maxPolarAngle={angleToRadians(89)}
       />
-      {/* Ball */}
-      <mesh position={[-1, 0.5, 2]} castShadow>
-        <sphereGeometry args={[0.5, 32, 32]} />
-        <meshStandardMaterial
-          color="#3f4900"
-          metalness={0.7}
-          roughness={0.5}
-          // emissive is the color of the light emitted by the material
-          // emissive={new THREE.Color("#ff0000").multiplyScalar(1)}
-        />
-      </mesh>
-      {/* 3rd party modal (Car) */}
       <Car />
-      {/* Drone */}
       <Drone />
       {/* Adding plane */}
       <mesh rotation={[-angleToRadians(90), 0, 0]} receiveShadow>
