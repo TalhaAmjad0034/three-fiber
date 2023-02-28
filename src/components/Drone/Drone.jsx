@@ -13,11 +13,11 @@ import { useGLTF } from "@react-three/drei";
 export default function Model(props) {
   const { nodes, materials } = useGLTF("/drone/drone-transformed.glb");
   return (
-    <group dispose={null} scale={0.2} position={[-50, 7, 0]}>
+    <group dispose={null} scale={0.1} position={[-50, 7, 0]}>
       <group
-        position={[-76.65, -31.63, 4.61]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        scale={100}
+        position={[500.65, -50.63, -18.61]}
+        rotation={[-Math.PI / 2, 0.2, 1]}
+        scale={2}
       >
         <mesh
           castShadow
